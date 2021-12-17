@@ -6,12 +6,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class RelicHunt extends JavaPlugin {
     @Override
     public void onEnable() {
-        getLogger().info("onEnable is called!");
+        intiializeConfig();
+
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(this), this);
     }
 
-    @Override
+    @Override 
     public void onDisable() {
         super.onDisable();
+    }
+
+    private void intiializeConfig() {
+        saveDefaultConfig();
+        getConfig().options().copyDefaults(true);
+        saveConfig();
+        getConfig();
+        getLogger().info("Config Updated and Loaded");
     }
 }

@@ -2,10 +2,10 @@ package io.github.erickeis.relichunt;
 
 public class Machine {
     private int percentComplete = 0;
-    private RelicHunt spigotPlugin;
+    private RelicHunt plugin;
 
-    public Machine(RelicHunt spigotPlugin) {
-        this.spigotPlugin = spigotPlugin;
+    public Machine(RelicHunt plugin) {
+        this.plugin = plugin;
     }
 
     public void setPercentComplete(int percentComplete) {

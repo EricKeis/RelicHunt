@@ -9,10 +9,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class PlayerInteractListener implements Listener {
-    private RelicHunt relicHunt;
+    private RelicHunt plugin;
 
-    public PlayerInteractListener(RelicHunt relicHunt) {
-        this.relicHunt = relicHunt;
+    public PlayerInteractListener(RelicHunt plugin) {
+        this.plugin = plugin;
     }
 
     @EventHandler
@@ -25,14 +25,14 @@ public class PlayerInteractListener implements Listener {
                     public void run() {
                         if ((int) event.getPlayer().getLocation().getX() == event.getClickedBlock().getX() &&
                                 (int) event.getPlayer().getLocation().getZ() == event.getClickedBlock().getZ()) {
-                            relicHunt.getLogger().info(material.toString());
+                            plugin.getLogger().info(material.toString());
                         }
                         else {
                             this.cancel();
-                            relicHunt.getLogger().info("Task cancelled for " + event.getPlayer().getDisplayName());
+                            plugin.getLogger().info("Task cancelled for " + event.getPlayer().getDisplayName());
                         }
                     }
-                }.runTaskTimerAsynchronously(relicHunt, 20L, 20L);
+                }.runTaskTimerAsynchronously(plugin, 20L, 20L);
             }
         }
     }
