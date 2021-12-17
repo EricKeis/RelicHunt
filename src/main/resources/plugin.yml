@@ -1,0 +1,4 @@
+name: SpigotPlugin
+version: 0.1
+main: io.github.erickeis.spigotplugin.SpigotPlugin
+api-version: '1.17'
