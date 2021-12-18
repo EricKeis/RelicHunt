@@ -1,14 +1,20 @@
 package io.github.erickeis.relichunt;
 
+import io.github.erickeis.relichunt.commands.RelicHuntCommand;
 import io.github.erickeis.relichunt.listeners.PlayerInteractListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class RelicHunt extends JavaPlugin {
+    private GameMap gameMap;
+
     @Override
     public void onEnable() {
-        intiializeConfig();
+        initializeConfig();
 
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(this), this);
+        getCommand("relichunt").setExecutor(new RelicHuntCommand());
+
+        gameMap = new GameMap(this);
     }
 
     @Override 
@@ -16,7 +22,11 @@ public class RelicHunt extends JavaPlugin {
         super.onDisable();
     }
 
-    private void intiializeConfig() {
+    public GameMap getGameMap() {
+        return gameMap;
+    }
+
+    private void initializeConfig() {
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
         saveConfig();

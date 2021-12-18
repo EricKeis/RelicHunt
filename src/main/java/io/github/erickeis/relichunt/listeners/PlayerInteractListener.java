@@ -20,19 +20,7 @@ public class PlayerInteractListener implements Listener {
         if (event.getAction().equals(Action.PHYSICAL)) {
             Material material = event.getClickedBlock().getLocation().getBlock().getType();
             if (material.equals(Material.STONE_PRESSURE_PLATE)) {
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        if ((int) event.getPlayer().getLocation().getX() == event.getClickedBlock().getX() &&
-                                (int) event.getPlayer().getLocation().getZ() == event.getClickedBlock().getZ()) {
-                            plugin.getLogger().info(material.toString());
-                        }
-                        else {
-                            this.cancel();
-                            plugin.getLogger().info("Task cancelled for " + event.getPlayer().getDisplayName());
-                        }
-                    }
-                }.runTaskTimerAsynchronously(plugin, 20L, 20L);
+                plugin.getGameMap().getMachines().get(0).addPlayer(event);
             }
         }
     }

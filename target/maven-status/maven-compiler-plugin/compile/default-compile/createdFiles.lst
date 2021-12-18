@@ -1,4 +1,7 @@
-io\github\erickeis\relichunt\listeners\PlayerInteractListener$1.class
+io\github\erickeis\relichunt\GameMap.class
+io\github\erickeis\relichunt\Machine$1.class
+io\github\erickeis\relichunt\commands\RelicHuntCommand.class
 io\github\erickeis\relichunt\listeners\PlayerInteractListener.class
 io\github\erickeis\relichunt\Machine.class
 io\github\erickeis\relichunt\RelicHunt.class
+io\github\erickeis\relichunt\Machine$2.class
