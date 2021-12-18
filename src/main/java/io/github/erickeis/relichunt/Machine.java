@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Machine {
     private RelicHunt plugin;
     private BukkitTask machineTask;
-    private Map<UUID, BukkitTask> players = new HashMap<>();
+    private HashMap<UUID, BukkitTask> players = new HashMap<>();
     private float percentComplete = 0;
 
     public Machine(RelicHunt plugin) {
@@ -20,6 +20,7 @@ public class Machine {
         startMachineTask();
     }
 
+    // change this logic to add progress in the addPlayer runnable and account for multiple players
     public void startMachineTask() {
         machineTask = new BukkitRunnable() {
             @Override
@@ -32,20 +33,22 @@ public class Machine {
     }
 
     public void addPlayer(PlayerInteractEvent event) {
-        players.put(event.getPlayer().getUniqueId(), new BukkitRunnable() {
-            @Override
-            public void run() {
-                if ((int) event.getPlayer().getLocation().getX() == event.getClickedBlock().getX() &&
-                        (int) event.getPlayer().getLocation().getZ() == event.getClickedBlock().getZ()) {
-                    plugin.getLogger().info(event.getClickedBlock().getLocation().getBlock().getType().toString());
-                    event.getPlayer().sendMessage("Machine is " + percentComplete + " complete");
+        if (!players.containsKey(event.getPlayer().getUniqueId())) {
+            players.put(event.getPlayer().getUniqueId(), new BukkitRunnable() {
+                @Override
+                public void run() {
+                    if ((int) event.getPlayer().getLocation().getX() == event.getClickedBlock().getX() &&
+                            (int) event.getPlayer().getLocation().getZ() == event.getClickedBlock().getZ()) {
+                        plugin.getLogger().info(event.getClickedBlock().getLocation().getBlock().getType().toString());
+                        event.getPlayer().sendMessage("Machine is " + percentComplete + " complete");
+                    }
+                    else {
+                        this.cancel();
+                        players.remove(event.getPlayer().getUniqueId());
+                        plugin.getLogger().info("Task cancelled for " + event.getPlayer().getDisplayName());
+                    }
                 }
-                else {
-                    players.remove(event.getPlayer().getUniqueId());
-                    cancel();
-                    plugin.getLogger().info("Task cancelled for " + event.getPlayer().getDisplayName());
-                }
-            }
-        }.runTaskTimer(plugin, 20L, 20L));
+            }.runTaskTimer(plugin, 20L, 20L));
+        }
     }
 }
