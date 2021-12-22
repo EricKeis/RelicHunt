@@ -1,5 +1,6 @@
 package io.github.erickeis.relichunt;
 
+import io.github.erickeis.relichunt.utils.FileUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -36,7 +37,7 @@ public class GameMap {
     private void loadConfig() {
         File mapConfigDir = new File(plugin.getDataFolder(), "data/mapConfigs");
 
-        if (createConfigDirectory(mapConfigDir)) {
+        if (FileUtils.createDirectory(mapConfigDir)) {
             configFile = new File(mapConfigDir, mapName + ".yml");
             gameMapConfig = YamlConfiguration.loadConfiguration(configFile);
             copyDefaultConfigOptions();
@@ -55,14 +56,6 @@ public class GameMap {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private boolean createConfigDirectory(File mapConfigDir) {
-        if (!mapConfigDir.exists() && !mapConfigDir.mkdirs()) {
-            plugin.getLogger().info("Cannot create maps directory. Config could not be saved!");
-            return false;
-        }
-        return true;
     }
 
     public FileConfiguration getConfig() {
