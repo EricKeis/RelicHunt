@@ -34,7 +34,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>F:\coding\java\spigot\minecraft server\plugins</outputDirectory>
+                            <outputDirectory>C:\dev\spigot\mc-server\plugins</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${basedir}/target</directory>

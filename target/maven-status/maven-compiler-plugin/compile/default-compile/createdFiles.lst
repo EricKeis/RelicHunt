@@ -1,5 +1,7 @@
 io\github\erickeis\relichunt\GameMap.class
 io\github\erickeis\relichunt\Machine$1.class
+io\github\erickeis\relichunt\utils\Coordinate.class
+io\github\erickeis\relichunt\Config\GameMapConfig.class
 io\github\erickeis\relichunt\commands\RelicHuntCommand.class
 io\github\erickeis\relichunt\listeners\PlayerInteractListener.class
 io\github\erickeis\relichunt\Machine.class
