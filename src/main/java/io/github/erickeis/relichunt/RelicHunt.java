@@ -29,6 +29,10 @@ public class RelicHunt extends JavaPlugin {
         return gameMap;
     }
 
+    public LanguageConfig getLang() {
+        return lang;
+    }
+
     private void initializeConfig() {
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
