@@ -3,7 +3,6 @@ package io.github.erickeis.relichunt.config;
 import io.github.erickeis.relichunt.RelicHunt;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
