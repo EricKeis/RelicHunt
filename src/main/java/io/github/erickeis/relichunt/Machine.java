@@ -1,5 +1,6 @@
 package io.github.erickeis.relichunt;
 
+import io.github.erickeis.relichunt.utils.Coordinate;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -14,10 +15,12 @@ public class Machine {
     private BukkitTask machineTask;
     private HashMap<UUID, BukkitTask> players = new HashMap<>();
     private float percentComplete = 0;
+    private Coordinate loc;
 
-    public Machine(RelicHunt plugin) {
+    public Machine(RelicHunt plugin, Coordinate loc) {
         this.plugin = plugin;
         startMachineTask();
+        this.loc = loc;
     }
 
     // change this logic to add progress in the addPlayer runnable and account for multiple players
@@ -37,9 +40,8 @@ public class Machine {
             players.put(event.getPlayer().getUniqueId(), new BukkitRunnable() {
                 @Override
                 public void run() {
-                    if ((int) event.getPlayer().getLocation().getX() == event.getClickedBlock().getX() &&
-                            (int) event.getPlayer().getLocation().getZ() == event.getClickedBlock().getZ()) {
-                        plugin.getLogger().info(event.getClickedBlock().getLocation().getBlock().getType().toString());
+                    if ((int) event.getPlayer().getLocation().getX() == loc.getX() &&
+                            (int) event.getPlayer().getLocation().getZ() == loc.getZ()) {
                         event.getPlayer().sendMessage("Machine is " + percentComplete + " complete");
                     }
                     else {

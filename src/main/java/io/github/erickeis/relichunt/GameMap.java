@@ -1,5 +1,6 @@
 package io.github.erickeis.relichunt;
 
+import io.github.erickeis.relichunt.utils.Coordinate;
 import io.github.erickeis.relichunt.utils.FileUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -9,11 +10,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameMap {
     private RelicHunt plugin;
-    private HashMap<Integer, Machine> machines = new HashMap<>();
+    private ArrayList<Machine> machines = new ArrayList<>();
     private FileConfiguration gameMapConfig;
     private File configFile;
     private String mapName;
@@ -23,15 +25,15 @@ public class GameMap {
         this.mapName = mapName;
 
         loadConfig();
-        machines.put(0, new Machine(plugin));
+        machines.add(new Machine(plugin, new Coordinate("22:97:-17")));
     }
 
-    public HashMap<Integer, Machine> getMachines() {
+    public ArrayList<Machine> getMachines() {
         return machines;
     }
     
     public void addMachine(Machine machine) {
-        machines.put(0, machine);
+        machines.add(machine);
     }
 
     private void loadConfig() {
