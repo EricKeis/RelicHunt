@@ -11,7 +11,7 @@ import java.util.Map;
 public class RelicHunt extends JavaPlugin {
     private GameMap gameMap;
     private LanguageConfig lang;
-    private Map<String, GameMap> arenas = new HashMap<>();
+    private ArenaManager arenaManager;
 
     @Override
     public void onEnable() {
