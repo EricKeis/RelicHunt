@@ -14,12 +14,14 @@ public abstract class BaseCmd {
     protected int argLength = 0;
     protected boolean forcePlayer = true;
     protected String parent;
+    protected String permission;
     protected int maxArgs = -1;
 
     public BaseCmd(RelicHunt plugin, String cmdName, int argLength) {
         this.plugin = plugin;
         this.cmdName = cmdName;
         this.argLength = argLength;
+        permission = "rh" + parent + "." + cmdName;
     }
 
     public void processCmd(CommandSender sender, String[] args) {
@@ -34,10 +36,7 @@ public abstract class BaseCmd {
             }
         }
 
-        if (!sender.hasPermission("sw." + parent + "." + cmdName)) {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    plugin.getLang().get("error.cmd-no-permission")));
-        } else {
+        if (hasPermission(permission)) {
             run();
         }
     }
@@ -48,6 +47,15 @@ public abstract class BaseCmd {
 
     public String[] getAliases() {
         return aliases;
+    }
+
+    protected boolean hasPermission(String s) {
+        if (!sender.hasPermission("rh" + parent + "." + cmdName)) {
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    plugin.getLang().get("error.cmd-no-permission")));
+            return false;
+        }
+        return true;
     }
 
     public abstract boolean run();

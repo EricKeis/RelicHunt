@@ -1,7 +1,7 @@
 package io.github.erickeis.relichunt.commands;
 
 import io.github.erickeis.relichunt.RelicHunt;
-import io.github.erickeis.relichunt.commands.admin.map.CreateCmd;
+import io.github.erickeis.relichunt.commands.admin.MapCmd;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,10 +12,10 @@ import java.util.List;
 
 public class AdminCmdManager implements CommandExecutor {
     private List<BaseCmd> commands = new ArrayList<>();
-    private String parentCmd = "rhadmin";
+    private String parentCmd = "admin";
 
     public AdminCmdManager(RelicHunt plugin) {
-        commands.add(new CreateCmd(plugin, parentCmd));
+        commands.add(new MapCmd(plugin, parentCmd));
     }
 
     @Override
