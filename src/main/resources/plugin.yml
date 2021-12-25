@@ -4,7 +4,6 @@ main: io.github.erickeis.relichunt.RelicHunt
 api-version: '1.18'
 
 commands:
-  relichunt:
+  rhadmin:
     description: This is the base command for the plugin
-    usage: /<command>
-    permission: relichunt.admin
+    aliases: [rha]

@@ -1,3 +1,3 @@
 error:
   must-be-player: "&cYou must be a player to use this command"
-  cmd-no-permission: "&cYou dont have permission to use this command"
+  cmd-no-permission: "&cYou don't have permission to use this command"

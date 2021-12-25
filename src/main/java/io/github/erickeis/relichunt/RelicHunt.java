@@ -1,5 +1,6 @@
 package io.github.erickeis.relichunt;
 
+import io.github.erickeis.relichunt.commands.AdminCmdManager;
 import io.github.erickeis.relichunt.commands.RelicHuntCommand;
 import io.github.erickeis.relichunt.config.LanguageConfig;
 import io.github.erickeis.relichunt.listeners.PlayerInteractListener;
@@ -18,7 +19,7 @@ public class RelicHunt extends JavaPlugin {
         initializeConfig();
 
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(this), this);
-        getCommand("relichunt").setExecutor(new RelicHuntCommand());
+        getCommand("rhadmin").setExecutor(new AdminCmdManager(this));
 
         gameMap = new GameMap(this, "CoolMap");
         lang = new LanguageConfig(this);

@@ -9,15 +9,17 @@ public abstract class BaseCmd {
     protected RelicHunt plugin;
     protected CommandSender sender;
     protected String[] args;
-    protected String[] alias;
+    protected String[] aliases;
     protected String cmdName;
     protected int argLength = 0;
     protected boolean forcePlayer = true;
     protected String parent;
     protected int maxArgs = -1;
 
-    public BaseCmd(RelicHunt plugin) {
+    public BaseCmd(RelicHunt plugin, String cmdName, int argLength) {
         this.plugin = plugin;
+        this.cmdName = cmdName;
+        this.argLength = argLength;
     }
 
     public void processCmd(CommandSender sender, String[] args) {
@@ -38,6 +40,14 @@ public abstract class BaseCmd {
         } else {
             run();
         }
+    }
+
+    public String getCmdName() {
+        return cmdName;
+    }
+
+    public String[] getAliases() {
+        return aliases;
     }
 
     public abstract boolean run();
