@@ -13,7 +13,7 @@ public class CreateCmd extends BaseCmd {
 
     @Override
     public boolean run() {
-        sender.sendMessage("You ran the admin command");
+        sender.sendMessage("You ran the create command");
         return true;
     }
 }

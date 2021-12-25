@@ -27,11 +27,7 @@ public class AdminCmdManager implements CommandExecutor {
     }
 
     public BaseCmd getCommand(String s) {
-        return getCommand(commands, s);
-    }
-
-    private BaseCmd getCommand(List<BaseCmd> cmds, String s) {
-        for (BaseCmd cmd: cmds) {
+        for (BaseCmd cmd: commands) {
             if (cmd.getCmdName().equalsIgnoreCase(s)) {
                 return cmd;
             }
